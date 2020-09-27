@@ -28,6 +28,10 @@ form {
     border-top: 1px solid rgba(0, 0, 0, .4);
 }
 
+.btnIndexEdit {
+    display: none;
+}
+
 .col-4, .col-6, .col-12 {
     margin-top: 10px;
 }

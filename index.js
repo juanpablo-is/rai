@@ -7,6 +7,50 @@ inputs.each(function (i, input) {
     })
 })
 
+$('.select').each(function (i, selectDiv) {
+    let btnAdd = $(selectDiv).find('.btnIndexAdd');
+    let btnDelete = $(selectDiv).find('.btnIndexDelete');
+    let btnEdit = $(selectDiv).find('.btnIndexEdit');
+    let select = $(selectDiv).find('select');
+    btnAdd.click(function () {
+        let index = prompt(`Add new ${i == 0 ? "index" : "key word"}.`)
+        if (index) {
+            $(select).append(`<option>${index}</option>`)
+        }
+    });
+
+    $(select).change(function (e) {
+        let position = $(select).find(':selected').index();
+        if (position != 0) {
+            $(btnDelete).removeAttr('disabled');
+            $(btnEdit).removeAttr('disabled');
+        }
+        else {
+            $(btnDelete).attr('disabled', 'disabled');
+            $(btnEdit).attr('disabled', 'disabled');
+        }
+        $(btnEdit).css('display', position != 0 ? 'block' : 'none');
+    });
+
+    $(btnDelete).click(function () {
+        let position = $(select).find(':selected').index();
+        let confirmResponse = confirm('Do you want to remove it?');
+        if (confirmResponse) {
+            $(select).children()[position].remove()
+            $(btnDelete).attr('disabled', 'disabled');
+            $(btnEdit).attr('disabled', 'disabled');
+            $(btnEdit).css('display', 'none');
+        }
+    });
+
+    $(btnEdit).click(function () {
+        let newInput = prompt('Edit your input');
+        $(select).find(':selected').text(newInput)
+    });
+});
+
+
+
 $("input[type='submit']").click(function (e) {
     e.preventDefault();
     let check = document.getElementById('formRai').reportValidity();

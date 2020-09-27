@@ -59,6 +59,36 @@
                 </div>
             </div>
 
+            <div class="d-flex">
+                <div class=" col-6">
+                    <label for="site">Index</label>
+                    <div class="input-group select">
+                        <select class="custom-select" id="selectIndex" aria-label="Example select with button addon">
+                            <option selected>Choose...</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btnIndexAdd btn btn-primary" type="button">Add</button>
+                            <button class="btnIndexEdit btn btn-outline-primary" type="button" disabled>Edit</button>
+                            <button class="btnIndexDelete btn btn-outline-danger" type="button" disabled>Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-6">
+                    <label for="site">Key words</label>
+                    <div class="input-group select">
+                        <select class="custom-select" id="selectIndex" aria-label="Example select with button addon">
+                            <option selected>Choose...</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btnIndexAdd btn btn-primary" type="button">Add</button>
+                            <button class="btnIndexEdit btn btn-outline-primary" type="button" disabled>Edit</button>
+                            <button class="btnIndexDelete btn btn-outline-danger" type="button" disabled>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="d-flex flex-column col-12">
                 <label for="summary">Summary</label>
                 <textarea class="form-control" name="summary" id="summary" cols="30" rows="6" required></textarea>
@@ -68,13 +98,6 @@
                 <label for="conclusion">Conclusion</label>
                 <textarea class="form-control" name="conclusion" id="conclusion" cols="30" rows="6" required></textarea>
             </div>
-
-
-
-            
-
-
-
 
             <div class="d-flex justify-content-center p-4 submitDiv">
                 <input type="submit" class="btn btn-outline-primary w-50" value="SEND RAI">
