@@ -9,8 +9,16 @@ inputs.each(function (i, input) {
 
 $("input[type='submit']").click(function (e) {
     e.preventDefault();
-    let s = document.getElementById('formRai').reportValidity();
-    if (s) {
+    let check = document.getElementById('formRai').reportValidity();
+    if (check) {
+        var pleaseWait = $('#pleaseWaitDialog');
+
+        showPleaseWait = function () { pleaseWait.modal('show'); };
+
+        hidePleaseWait = function () { pleaseWait.modal('hide'); };
+
+        showPleaseWait();
+
         let url = 'https://script.google.com/macros/s/AKfycby0OfAgmNdhTlux-IAJkwoPRLBqsY3PCwtVO4sWxw/exec';
         let data = {};
 
@@ -25,6 +33,8 @@ $("input[type='submit']").click(function (e) {
         data.summary = document.getElementById('summary').value;
         data.conclusion = document.getElementById('conclusion').value;
 
+        let progress = $('#progress');
+
         $.ajax({
             url: url,
             headers: {
@@ -33,11 +43,22 @@ $("input[type='submit']").click(function (e) {
             type: "POST",
             dataType: "json",
             data: data,
-            success: function (result) {
-                window.open(window.location.href, '_self');
+            success: function () {
+                $(progress).width('100%')
+                $(progress).addClass('bg-success')
+                $(pleaseWait).find('#header-modal').text('RAI SENT');
+                $(pleaseWait).find('#p-moda').text('Your RAI has been saved in your drive.');
+                setTimeout(() => {
+                    hidePleaseWait();
+                    window.open(window.location.href, '_self');
+                }, 3000);
             },
             error: function (e) {
-                alert('An error occurred.');
+                $(progress).width('100%')
+                $(progress).addClass('bg-danger')
+                $(pleaseWait).find('#header-modal').text('ERROR WHEND SEND IT');
+                $(pleaseWait).find('#p-moda').text('Your RAI has not been sending correctly, try again.');
+                hidePleaseWait();
                 console.log("Error: " + e);
             }
         });
