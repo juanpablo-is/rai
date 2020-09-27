@@ -3,7 +3,7 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     form.reportValidity();
 
-    let url = 'https://script.google.com/macros/s/AKfycbx75T-pTHT_2ADOGwT5FeIqPsMcw4uBwjsJQoxYIT82GnCm4NQI/exec';
+    let url = 'https://script.google.com/macros/s/AKfycby0OfAgmNdhTlux-IAJkwoPRLBqsY3PCwtVO4sWxw/exec';
     let data = {};
 
     data.title = document.getElementById('title').value;
