@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAIS GAS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <main>
+        <form id="formRai">
+            <div class="column">
+                <div class="row">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div class="row">
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author" required>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="row">
+                    <label for="year">Year post</label>
+                    <input type="number" name="year" id="year" required>
+                </div>
+                <div class="row">
+                    <label for="theme">Theme</label>
+                    <input type="text" name="theme" id="theme" required>
+                </div>
+                <div class="row">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date">
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="row">
+                    <label for="site">Site web</label>
+                    <input type="text" name="site" id="site" required>
+                </div>
+                <div class="row">
+                    <label for="editorial">Editorial</label>
+                    <input type="text" name="editorial" id="editorial">
+                </div>
+                <div class="row">
+                    <label for="isbn">ISBN</label>
+                    <input type="text" name="isbn" id="isbn">
+                </div>
+            </div>
+
+            <div class="row">
+                <label for="summary">Summary</label>
+                <textarea name="summary" id="summary" cols="30" rows="6" required></textarea>
+            </div>
+
+            <div class="row">
+                <label for="conclusion">Conclusion</label>
+                <textarea name="conclusion" id="conclusion" cols="30" rows="6" required></textarea>
+            </div>
+
+            <input type="submit" value="SEND RAI">
+        </form>
+    </main>
+</body>
+<script src="index.js"></script>
+
+</html>
