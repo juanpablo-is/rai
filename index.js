@@ -8,9 +8,9 @@ inputs.each(function (i, input) {
 })
 
 $('.select').each(function (i, selectDiv) {
-    let btnAdd = $(selectDiv).find('.btnIndexAdd');
-    let btnDelete = $(selectDiv).find('.btnIndexDelete');
-    let btnEdit = $(selectDiv).find('.btnIndexEdit');
+    let btnAdd = $(selectDiv).find('.btnAdd');
+    let btnDelete = $(selectDiv).find('.btnDelete');
+    let btnEdit = $(selectDiv).find('.btnEdit');
     let select = $(selectDiv).find('select');
     btnAdd.click(function () {
         let index = prompt(`Add new ${i == 0 ? "index" : "key word"}.`)
@@ -56,11 +56,12 @@ $("input[type='submit']").click(function (e) {
     let check = document.getElementById('formRai').reportValidity();
     if (check) {
         var pleaseWait = $('#pleaseWaitDialog');
-
-        showPleaseWait = function () { pleaseWait.modal('show'); };
-
+        showPleaseWait = function () {
+            let modal = pleaseWait.modal('show');
+            $(modal).find('#progress').width('40%')
+            $(modal).find('#progress').removeClass('bg-success')
+        };
         hidePleaseWait = function () { pleaseWait.modal('hide'); };
-
         showPleaseWait();
 
         let url = 'https://script.google.com/macros/s/AKfycby0OfAgmNdhTlux-IAJkwoPRLBqsY3PCwtVO4sWxw/exec';
@@ -78,6 +79,19 @@ $("input[type='submit']").click(function (e) {
         data.conclusion = document.getElementById('conclusion').value;
 
         let progress = $('#progress');
+
+        let indexTxt = '';
+        for (let i = 1; i < $('#selectIndex').children().length; i++) {
+            indexTxt += $('#selectIndex').children()[i].text + "|";
+        }
+
+        let keyTxt = '';
+        for (let i = 1; i < $('#selectKey').children().length; i++) {
+            keyTxt += $('#selectKey').children()[i].text + ",";
+        }
+
+        data.index = indexTxt;
+        data.keyWords = keyTxt;
 
         $.ajax({
             url: url,
@@ -106,5 +120,6 @@ $("input[type='submit']").click(function (e) {
                 console.log("Error: " + e);
             }
         });
+
     }
 });
