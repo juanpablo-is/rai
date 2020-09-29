@@ -10,7 +10,7 @@ html {
     box-sizing: inherit;
 }
 
-form {
+#formRai {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -42,4 +42,16 @@ label {
 
 textarea {
     resize: none;
+}
+
+#message {
+    width: 20%;
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    padding-right: 10px;
+    bottom: 10px;
+    text-align: center;
+    z-index: 1;
 }

@@ -12,11 +12,43 @@ $('.select').each(function (i, selectDiv) {
     let btnDelete = $(selectDiv).find('.btnDelete');
     let btnEdit = $(selectDiv).find('.btnEdit');
     let select = $(selectDiv).find('select');
-    btnAdd.click(function () {
-        let index = prompt(`Add new ${i == 0 ? "index" : "key word"}.`)
-        if (index) {
-            $(select).append(`<option>${index}</option>`)
+
+    let valueItemF = function (option) {
+        let value = $('#addItem #valueModalAdd').val();
+        if (value && !option) {
+            $(select).append(`<option>${value}</option>`)
+        } else if (option) {
+            $(select).find(':selected').text(value);
+            $('#addItem').modal('hide');
         }
+        $('#message').html(`<div class="alert alert-info"><button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true">×</button>New item has been ${option ? 'edited' : 'added'}.</div>`);
+        setTimeout(() => {
+            $(".alert").alert('close');
+        }, 2000);
+        $('#addItem #valueModalAdd').val('');
+    }
+    let optionClick = function (option = false) {
+        $('#addItem').modal();
+        $('#addItem #valueModalAdd').val(option ? $(select).find(':selected').val() : '');
+        $('#addItem #titleModalAdd').text(`NEW ${i == 0 ? "INDEX" : "KEY WORD"}`);
+        $('#addItem #labelModalAdd').text(`Add new ${i == 0 ? "index" : "key word"}`);
+        $('#addItem #btnOtherAdd').text(option ? 'Edit item' : this.text);
+        $('#addItem #valueModalAdd').off().on('keydown', function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                valueItemF(option);
+            }
+        });
+        $('#addItem #btnOtherAdd').off().click(function () {
+            valueItemF(option);
+        });
+    }
+    btnAdd.click(function () {
+        optionClick();
+    });
+
+    $(btnEdit).click(function () {
+        optionClick(true);
     });
 
     $(select).change(function (e) {
@@ -42,14 +74,7 @@ $('.select').each(function (i, selectDiv) {
             $(btnEdit).css('display', 'none');
         }
     });
-
-    $(btnEdit).click(function () {
-        let newInput = prompt('Edit your input');
-        $(select).find(':selected').text(newInput)
-    });
 });
-
-
 
 $("input[type='submit']").click(function (e) {
     e.preventDefault();
